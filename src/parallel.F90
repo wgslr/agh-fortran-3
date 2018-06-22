@@ -35,7 +35,6 @@ module parallel
     integer ( kind = 4) :: rows1, rows2, cols1, cols2, r, c, i, stripe, im
     integer ( kind = 4) :: resultshape(2)
     integer ( kind = 4), codimension[:], allocatable :: minrow, maxrow
-    real (kind=8) :: start, stop
 
     allocate(minrow[*])
     allocate(maxrow[*])

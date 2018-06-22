@@ -62,4 +62,29 @@ module sequential
     status = 0
   end subroutine
 
+  !------------------------------------------------------------------------------
+  !> @author
+  !> Wojciech Geisler
+  !
+  ! DESCRIPTION: 
+  !> Wrapper on mm_seq with explicit size variable
+  !> necessary for creating python bindings.
+  !> Accepts only square matrices.
+  !
+  !> @param[in] first First operand
+  !> @param[in] second Second operand
+  !> @param[out] multiply Multiplication result
+  !> @param[out] status Exit code, 0 means success
+  !> @param[in] isize Size of the matrix
+  !------------------------------------------------------------------------------
+  subroutine mm_seq_square(first, second, multiply, status, isize)
+    real ( kind = 8), intent(in) :: first(isize,isize) ! pierwsza macierz
+    real ( kind = 8), intent(in) :: second(isize, isize) ! druga macierz
+    real ( kind = 8), intent(out) :: multiply(isize, isize) ! macierz wynikowa
+    integer ( kind = 4), intent(out) :: status ! kod błędu, 0 gdy OK
+    integer ( kind = 4), intent(in) :: isize
+
+    call mm_seq(first, second, multiply, status)
+  end 
+
 end module
