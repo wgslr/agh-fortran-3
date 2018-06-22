@@ -2,8 +2,11 @@ FC=ifort
 PFUNIT = /opt/funit/pfunit-serial
 F90_VENDOR = Intel
 
+
 SDIR=src
 ODIR=out
+
+IMGS=4
 
 PATHS = PATH='/opt/intel/compilers_and_libraries_2018.2.199/linux/mpi/intel64/bin:'"$$PATH" LD_LIBRARY_PATH='/opt/intel/compilers_and_libraries_2018.2.199/linux/compiler/lib/intel64_lin' 
 FC:=$(PATHS) $(FC)
@@ -20,7 +23,7 @@ OBJS = $(FS:$(SDIR)/%.F90=$(ODIR)/%.o)
 all: $(ODIR)/main.o
 
 run: $(ODIR)/main.o
-	$(PATHS) $(ODIR)/main.o $(ARGS)
+	FOR_COARRAY_NUM_IMAGES=$(IMGS) $(PATHS) $(ODIR)/main.o $(ARGS)
 
 main: $(ODIR)/main.o
 

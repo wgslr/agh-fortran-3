@@ -38,17 +38,27 @@ program mult
     first = 1.1
     second = 2.3
 
-  if (THIS_IMAGE() .EQ. 1) then
-    call cpu_time(start)
-    call mm_seq(first, second, multiply, status)
-    call cpu_time(stop)
-  end if
+    if (THIS_IMAGE() .EQ. 1) then
+      call cpu_time(start)
+      call mm_seq(first, second, multiply, status)
+      call cpu_time(stop)
+
+      print *, "Sequential: "
+      print '(i6,";",f15.7,"")', isize,(stop - start)
+    end if
+
+    print *, "Pre sync ", THIS_IMAGE()
+    sync all
+    print *, "Post sync ", THIS_IMAGE()
 
     call cpu_time(start)
     call mm_par(first, second, multiply, status)
     call cpu_time(stop)
 
-    print '(i6,";",f15.7,"")', isize,(stop - start)
+    if (THIS_IMAGE() .EQ. 1) then
+      print *, "Parallel: "
+      print '(i6,";",f15.7,"")', isize,(stop - start)
+    end if
 
     deallocate(first)
     deallocate(second)
