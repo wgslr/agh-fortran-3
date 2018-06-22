@@ -18,11 +18,9 @@ program mult
     read(arg, *, iostat=parse_result) start
   end if
 
-  if (THIS_IMAGE() .EQ. 1) then
-    do i = start, n, step
-      call measure(i)
-    end do
-  end if
+  do i = start, n, step
+    call measure(i)
+  end do
 
   contains
 
@@ -40,9 +38,11 @@ program mult
     first = 1.1
     second = 2.3
 
+  if (THIS_IMAGE() .EQ. 1) then
     call cpu_time(start)
     call mm_seq(first, second, multiply, status)
     call cpu_time(stop)
+  end if
 
     call cpu_time(start)
     call mm_par(first, second, multiply, status)

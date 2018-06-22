@@ -4,8 +4,8 @@ module parallel
     real ( kind = 8), intent(in) :: first(:,:) ! pierwsza macierz
     real ( kind = 8), intent(in) :: second(: ,:) ! druga macierz
     real ( kind = 8), intent(out) :: multiply(:,:) ! macierz wynikowa
-    ! real ( kind = 8), codimension[:], dimension(:,:), allocatable :: buff
-    real ( kind = 8), allocatable :: buff(:,:)[:]
+    real ( kind = 8), codimension[:], dimension(:,:), allocatable :: buff
+    ! real ( kind = 8) :: buff(size,size)[:]
     integer ( kind = 4), intent(out) :: status ! kod błędu, 0 gdy OK
     integer ( kind = 4) :: rows1, rows2, cols1, cols2, r, c, i ! kod błędu, 0 gdy OK
     integer ( kind = 4) :: resultshape(2)
@@ -17,11 +17,11 @@ module parallel
     cols2 = size(second, 2)
     resultshape = shape(multiply)
 
-    print *, 123
+    print *, cols1, CEILING(real(rows1)/NUM_IMAGES()), NUM_IMAGES(), 1, 2, 3
 
-    allocate(buff[THIS_IMAGE()], SOURCE=multiply)
+    allocate(buff(cols1, cols1)[*])
 
-    ! print *, buff(:,:)[THIS_IMAGE()]
+    print *, this_image(), buff(:,:)[THIS_IMAGE()]
 
     if (cols1 .NE. rows2) then
       status = 1
@@ -43,9 +43,11 @@ module parallel
       end do
     end do
 
-    print *, multiply
-
     status = 0
   end subroutine
+
+  ! subroutine do_mm(first, second, result)
+      
+  ! end subroutine routinedo do_mm(
 
 end module
