@@ -20,11 +20,11 @@ OBJS = $(FS:$(SDIR)/%.F90=$(ODIR)/%.o)
 all: $(ODIR)/main.o
 
 run: $(ODIR)/main.o
-	$(PATHS) $(ODIR)/main.o 10 1 1
+	$(PATHS) $(ODIR)/main.o $(ARGS)
 
 main: $(ODIR)/main.o
 
-$(ODIR)/main.o:  $(SDIR)/main.F90 
+$(ODIR)/main.o: $(SDIR)/main.F90 $(OBJS)
 	$(PATHS) $(FC) $^ -o $@ $(FFLAGS)
 
 $(ODIR)/%.o: $(SDIR)/%.F90
