@@ -1,13 +1,14 @@
 program mult
   use sequential
+  use parallel
 
   integer ( kind = 8) :: i, n, step, parse_result, start
   character(len=10) :: arg
 
   if (command_argument_count() .NE. 3) then
-    n = 1000
+    n = 10
     step = 1
-    start = 0
+    start = 10
   else
     call get_command_argument(1, arg)
     read(arg, *, iostat=parse_result) n
@@ -41,6 +42,10 @@ program mult
 
     call cpu_time(start)
     call mm_seq(first, second, multiply, status)
+    call cpu_time(stop)
+
+    call cpu_time(start)
+    call mm_par(first, second, multiply, status)
     call cpu_time(stop)
 
     print '(i6,";",f15.7,"")', isize,(stop - start)
