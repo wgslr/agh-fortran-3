@@ -1,9 +1,34 @@
+!------------------------------------------------------------------------------
+! MODULE: sequential
+!
+!> @author
+!> Wojciech Geisler
+!
+! DESCRIPTION: 
+!> This module contains sequential algorithm implementations.
+!
+! REVISION HISTORY:
+! 22 06 2018 - Initial version
+!------------------------------------------------------------------------------
 module sequential
   contains
+  !------------------------------------------------------------------------------
+  !> @author
+  !> Wojciech Geisler
+  !
+  ! DESCRIPTION: 
+  !> Multiplies two matrices and places result in the `multiply` param.
+  !> Performs mathematical operation \f$ first \times second \f$
+  !
+  !> @param[in] first First operand
+  !> @param[in] second Second operand
+  !> @param[out] multiply Multiplication result
+  !> @param[out] status Exit code, 0 means success
+  !------------------------------------------------------------------------------
   subroutine mm_seq(first, second, multiply, status)
     real ( kind = 8), intent(in) :: first(:,:) ! pierwsza macierz
-    real ( kind = 8), intent(in) :: second(: ,:) ! druga macierz
-    real ( kind = 8), intent(out) :: multiply(:,:) ! macierz wynikowa
+    real ( kind = 8), intent(in) :: second(:, :) ! druga macierz
+    real ( kind = 8), intent(out) :: multiply(:, :) ! macierz wynikowa
     integer ( kind = 4), intent(out) :: status ! kod błędu, 0 gdy OK
     integer ( kind = 4) :: rows1, rows2, cols1, cols2, r, c, i ! kod błędu, 0 gdy OK
     integer ( kind = 4) :: resultshape(2)
