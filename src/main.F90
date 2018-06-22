@@ -6,16 +6,16 @@ program mult
   character(len=10) :: arg
 
   if (command_argument_count() .NE. 3) then
-    n = 10
-    step = 1
-    start = 10
+    start = 1
+    n = 500
+    step = 5
   else
     call get_command_argument(1, arg)
-    read(arg, *, iostat=parse_result) n
-    call get_command_argument(2, arg)
-    read(arg, *, iostat=parse_result) step
-    call get_command_argument(3, arg)
     read(arg, *, iostat=parse_result) start
+    call get_command_argument(2, arg)
+    read(arg, *, iostat=parse_result) n
+    call get_command_argument(3, arg)
+    read(arg, *, iostat=parse_result) step
   end if
 
   do i = start, n, step
@@ -43,21 +43,17 @@ program mult
       call mm_seq(first, second, multiply, status)
       call cpu_time(stop)
 
-      print *, "Sequential: "
-      print '(i6,";",f15.7,"")', isize,(stop - start)
+      print '("mm_seq;", i6,";1;",f15.7,"")', isize,(stop - start)
     end if
 
-    print *, "Pre sync ", THIS_IMAGE()
     sync all
-    print *, "Post sync ", THIS_IMAGE()
 
     call cpu_time(start)
     call mm_par(first, second, multiply, status)
     call cpu_time(stop)
 
     if (THIS_IMAGE() .EQ. 1) then
-      print *, "Parallel: "
-      print '(i6,";",f15.7,"")', isize,(stop - start)
+      print '("mm_par;",i6,";",i6,";",f15.7,"")', isize, NUM_IMAGES(), (stop - start)
     end if
 
     deallocate(first)

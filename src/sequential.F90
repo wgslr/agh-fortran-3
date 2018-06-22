@@ -26,8 +26,6 @@ module sequential
 
     multiply = 0
 
-    print *, "Sequential on ", THIS_IMAGE()
-
     do r = 1, rows1
       do c = 1, cols2
         do i = 1, cols1

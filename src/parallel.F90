@@ -1,4 +1,5 @@
 module parallel
+  use ISO_FORTRAN_ENV, ONLY: ERROR_UNIT
   contains
   subroutine mm_par(first, second, multiply, status)
     real ( kind = 8), intent(in) :: first(:,:) ! pierwsza macierz
@@ -36,15 +37,7 @@ module parallel
 
     allocate(buff(stripe, cols2)[*])
 
-    ! if( THIS_IMAGE() .EQ. 1) then
-      ! do im = 1, NUM_IMAGES()
-        print '("Image ",i6,": ",i6,"..",i6)', THIS_IMAGE(), minrow, maxrow
-      ! end do
-
-    ! end if
-
-    ! buff(:,:)[THIS_IMAGE()] = 0 
-    call cpu_time(start)
+    write (ERROR_UNIT, '("Image ",i6,": ",i6,"..",i6)'), THIS_IMAGE(), minrow, maxrow
 
     do r = minrow, maxrow
       do c = 1, cols2
@@ -55,32 +48,17 @@ module parallel
     end do
 
     sync all
-    call cpu_time(stop)
 
-    print *, "Map: ", (stop - start)
-
-    print *, THIS_IMAGE(), "Multiplied"
-
-    call cpu_time(start)
     ! Collect results
     if(THIS_IMAGE() .EQ. 1) then
       do im = 1, NUM_IMAGES()
         multiply(minrow[im]:maxrow[im], :) = buff(1:(maxrow[im] - minrow[im] + 1), :)[im]
-        ! print '("result(", i6,":",i6,", :) = buff(", i6, ":",i6")")', minrow[im], maxrow[im], 1, (maxrow[im] - minrow[im] + 1)
-        ! print *, multiply(minrow[im]:maxrow[im], :)
       end do
     end if
-    call cpu_time(stop)
 
-    print *, "Reduce: ", (stop - start)
-
-
-
-    ! deallocate(buff)
-    ! deallocate(minrow)
-    ! deallocate(maxrow)
-
-    ! print *, THIS_IMAGE(), "Deallocated"
+    deallocate(buff)
+    deallocate(minrow)
+    deallocate(maxrow)
     
     status = 0
   end subroutine
