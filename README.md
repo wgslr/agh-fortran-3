@@ -28,6 +28,11 @@ Issue `make py/sequential.so` to generate the python bindings.
 To successfully run the sample application environment variable `LD_LIBRARY_PATH` must be set to folder containing the `libifort.so`, for example `LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2018.2.199/linux/compiler/lib/intel64/`.  
 Run `./py/example.py` for a sample application which invokes matrix multiplication and gaussian elimination and validates their results.
 
+```bash
+LD_LIBRARY_PATH=/opt/intel/compilers_and_libraries_2018.2.199/linux/compiler/lib/intel64/ ./py/example.py
+```
+
+Sample invocation can be seen here: <https://asciinema.org/a/OokED9z2kA1CGnYGq0gDyGyeF>
 
 
 # Documentation
