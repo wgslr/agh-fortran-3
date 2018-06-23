@@ -44,7 +44,7 @@ program mult
       call mm_seq(first, second, multiply, status)
       call cpu_time(stop)
 
-      print '("mm_seq;", i6,";1;",f15.7,"")', isize,(stop - start)
+      print '("mm_seq;",i6,";",i6,";",f15.7,"")', isize, NUM_IMAGES(), (stop - start)
     end if
 
     sync all
@@ -70,7 +70,7 @@ program mult
       call gauss_seq(first, second(1,:), isize - 1)
       call cpu_time(stop)
 
-      print '("gauss_seq;", i6,";1;",f15.7,"")', isize,(stop - start)
+      print '("gauss_seq;",i6,";",i6,";",f15.7,"")', isize, NUM_IMAGES(), (stop - start)
     end if
 
     sync all

@@ -86,7 +86,17 @@ module parallel
     status = 0
   end subroutine
 
-
+  !------------------------------------------------------------------------------
+  !> @author
+  !> Wojciech Geisler
+  !
+  ! DESCRIPTION: 
+  !> Performs gaussian elimination on a coefficients and right hand values.
+  !
+  !> @param[inout] A Rank 2 array of coefficients
+  !> @param[inout] X Rank 1 array of right hand values.
+  !> @param[in] n Maximum row number for 0-indexec array A and X
+  !------------------------------------------------------------------------------
   subroutine gauss_par(A, X, n)
     integer(kind=8), intent(in) :: n
     real(kind = 8), intent(inout) :: A(0:N, 0:N), X(0:N)
@@ -111,7 +121,7 @@ module parallel
       end if
       sync all
       do j = THIS_IMAGE() - 1, N, NUM_IMAGES()
-        IF ((i .NE. j) .AND. (ABS(coA(i, i)[1] - 0) < 1d-6)) THEN
+        IF ((i .NE. j) .AND. (ABS(coA(i, i)[1] - 0) > 1d-6)) THEN
           ratio = coA(i, j)[1] / coA(i, i)[1]
           coA(:,j)[1] = coA(:,j)[1] - ratio * coA(:, i)[1]
           coX(j)[1] = coX(j)[1] - ratio * coX(i)[1]

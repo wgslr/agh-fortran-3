@@ -88,6 +88,17 @@ module sequential
   end 
 
 
+  !------------------------------------------------------------------------------
+  !> @author
+  !> Wojciech Geisler
+  !
+  ! DESCRIPTION: 
+  !> Performs gaussian elimination on a coefficients and right hand values.
+  !
+  !> @param[inout] A Rank 2 array of coefficients
+  !> @param[inout] X Rank 1 array of right hand values.
+  !> @param[in] n Maximum row number for 0-indexec array A and X
+  !------------------------------------------------------------------------------
   subroutine gauss_seq(A, X, n)
     integer(kind=8), intent(in) :: n
     real(kind = 8), intent(inout) :: A(0:N, 0:N), X(0:N)
@@ -99,7 +110,7 @@ module sequential
       X(i) = X(i) / A(i, i)
       A(:, i) = A(:, i) / A(i, i)
       do j = 0, N
-        IF ((i .NE. j) .AND. (ABS(A(i, i) - 0) < 1d-6)) THEN
+        IF ((i .NE. j) .AND. (ABS(A(i, i) - 0) > 1d-6)) THEN
           ratio = A(i, j) / A(i, i)
           A(:,j) = A(:,j) - ratio * A(:, i)
           X(j) = X(j) - ratio * x(i)
