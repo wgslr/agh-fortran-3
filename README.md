@@ -57,6 +57,7 @@ Another observation is that executing multiple images when only one is doing wor
 ![mm_seq](./stats/mm_seq.png)
 
 ## Gaussian elimination
-![gauss](./stats/gauss_log.png)
+![gauss](./stats/gauss_log.png)  
+y-axis: seconds (logarithmic), x-axis: matrix size
 
 Suprisingly, the parallel implementation decreased perfromance instead of improving it.
