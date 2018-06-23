@@ -78,11 +78,11 @@ module sequential
   !> @param[in] isize Size of the matrix
   !------------------------------------------------------------------------------
   subroutine mm_seq_square(first, second, multiply, status, isize)
+    integer ( kind = 4), intent(in) :: isize
     real ( kind = 8), intent(in) :: first(isize,isize) ! pierwsza macierz
     real ( kind = 8), intent(in) :: second(isize, isize) ! druga macierz
     real ( kind = 8), intent(out) :: multiply(isize, isize) ! macierz wynikowa
     integer ( kind = 4), intent(out) :: status ! kod błędu, 0 gdy OK
-    integer ( kind = 4), intent(in) :: isize
 
     call mm_seq(first, second, multiply, status)
   end 
@@ -99,7 +99,7 @@ module sequential
       X(i) = X(i) / A(i, i)
       A(:, i) = A(:, i) / A(i, i)
       do j = 0, N
-        IF ((i .NE. j) .AND. (A(i, i) .NE. 0)) THEN
+        IF ((i .NE. j) .AND. (ABS(A(i, i) - 0) < 1d-6)) THEN
           ratio = A(i, j) / A(i, i)
           A(:,j) = A(:,j) - ratio * A(:, i)
           X(j) = X(j) - ratio * x(i)

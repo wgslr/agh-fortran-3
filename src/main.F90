@@ -27,6 +27,7 @@ program mult
   subroutine measure(isize)
     implicit none
     integer (kind=4) :: status
+    integer (kind=8) :: i, j
     integer (kind=8), intent(in) :: isize
     real (kind=8), allocatable :: first(:,:), second(:, :), multiply(:, :)
     real (kind=8) :: start, stop
@@ -55,6 +56,40 @@ program mult
     if (THIS_IMAGE() .EQ. 1) then
       print '("mm_par;",i6,";",i6,";",f15.7,"")', isize, NUM_IMAGES(), (stop - start)
     end if
+
+    do i=1,isize,1
+      do j=1,isize,1
+        first(i,j) = (i * isize) * j
+      end do
+      second(1,i) = i
+    end do
+
+
+    if (this_image() .eq. 1) then
+      call cpu_time(start)
+      call gauss_seq(first, second(1,:), isize - 1)
+      call cpu_time(stop)
+
+      print '("gauss_seq;", i6,";1;",f15.7,"")', isize,(stop - start)
+    end if
+
+    sync all
+    do i=1,isize,1
+      do j=1,isize,1
+        first(i,j) = (i * isize) * j
+      end do
+      second(1,i) = i
+    end do
+
+    call cpu_time(start)
+    call gauss_par(first, second(1,:), isize - 1)
+    call cpu_time(stop)
+
+    if (THIS_IMAGE() .EQ. 1) then
+      print '("gauss_par;",i6,";",i6,";",f15.7,"")', isize, NUM_IMAGES(), (stop - start)
+    end if
+
+    sync all
 
     deallocate(first)
     deallocate(second)

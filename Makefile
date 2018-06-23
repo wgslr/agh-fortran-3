@@ -16,13 +16,13 @@ PATHS = PATH='/opt/intel/compilers_and_libraries_2018.2.199/linux/mpi/intel64/bi
 FC:=$(PATHS) $(F)
 FFLAGS = -funroll-all-loops -std08 -implicitnone -fpp -warn all -pedantic -module $(ODIR) -coarray
 FFLAGS += -I$(PFUNIT)/mod -I$(PFUNIT)/include 
-FFLAGS += -WB -g -O0
+FFLAGS += -WB -g -O0 
 LIBS = $(PFUNIT)/lib/libpfunit$(LIB_EXT)
 
 FS = $(filter-out $(SDIR)/main.F90, $(wildcard $(SDIR)/*.F90))
 OBJS = $(FS:$(SDIR)/%.F90=$(ODIR)/%.o)
 
-.PHONY: all main run 
+.PHONY: all main run clean
 
 all: $(ODIR)/main.o
 
@@ -42,3 +42,6 @@ $(ODIR)/%.o: $(SDIR)/%.F90
 
 $(PDIR)/%.so: $(SDIR)/%.F90
 	F90=$(F) CC=$(CC) cd $(PDIR); $(F2P) -c ../$< -m $* 
+
+clean:
+	find -type p -delete

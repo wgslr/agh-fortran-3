@@ -60,7 +60,7 @@ module parallel
 
     allocate(buff(stripe, cols2)[*])
 
-    write (ERROR_UNIT, '("Image ",i6,": ",i6,"..",i6)'), THIS_IMAGE(), minrow, maxrow
+    !write (ERROR_UNIT, '("Image ",i6,": ",i6,"..",i6)'), THIS_IMAGE(), minrow, maxrow
 
     do r = minrow, maxrow
       do c = 1, cols2
@@ -85,5 +85,49 @@ module parallel
     
     status = 0
   end subroutine
+
+
+  subroutine gauss_par(A, X, n)
+    integer(kind=8), intent(in) :: n
+    real(kind = 8), intent(inout) :: A(0:N, 0:N), X(0:N)
+    real ( kind = 8), codimension[:], allocatable :: coA(:,:)
+    real ( kind = 8), codimension[:], allocatable :: coX(:)
+    real(kind = 8) :: ratio
+    integer(kind=8) :: i, j
+
+    allocate(coA(0:N, 0:N)[*])
+    allocate(coX(0:N)[*])
+
+    if (THIS_IMAGE() .eq. 1) then
+      coA(:,:)[1] = A(:,:)
+      coX(:)[1] = X(:)
+    end if
+
+    do i = 0, N
+      ! scale row i to have 1 on the diagonal
+      if(THIS_IMAGE() .eq. 1) then
+        coX(i)[1] = coX(i)[1] / coA(i, i)[1]
+        coA(:, i)[1] = coA(:, i)[1] / coA(i, i)[1]
+      end if
+      sync all
+      do j = THIS_IMAGE() - 1, N, NUM_IMAGES()
+        IF ((i .NE. j) .AND. (ABS(coA(i, i)[1] - 0) < 1d-6)) THEN
+          ratio = coA(i, j)[1] / coA(i, i)[1]
+          coA(:,j)[1] = coA(:,j)[1] - ratio * coA(:, i)[1]
+          coX(j)[1] = coX(j)[1] - ratio * coX(i)[1]
+        END IF
+      END DO
+    END DO
+    
+
+    if (THIS_IMAGE() .eq. 1) then
+      A(:,:) = coA(:,:)[1] 
+      X(:) = coX(:)[1] 
+    end if
+
+    deallocate(coA)
+    deallocate(coX)
+  end subroutine
+
 
 end module
