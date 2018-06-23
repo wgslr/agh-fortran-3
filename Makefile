@@ -2,6 +2,7 @@ CC=gcc
 F=ifort
 PFUNIT = /opt/funit/pfunit-serial
 F90_VENDOR = Intel
+# f2py bundled with numpy
 F2P=f2py2
 DOX=doxygen
 
