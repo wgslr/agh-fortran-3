@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fortran 3: parallel Module Reference</title>
+<title>Fortran assignment 3: parallel Module Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Fortran 3
+   <div id="projectname">Fortran assignment 3
    &#160;<span id="projectnumber">1</span>
    </div>
    <div id="projectbrief">Third assignment in the &quot;Fortran programming&quot; course</div>
@@ -69,13 +69,20 @@ $(function() {
 <div class="title">parallel Module Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This module contains paralell algorithm implementations.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:aba503c773f80612af63d48046bfb352d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceparallel.html#aba503c773f80612af63d48046bfb352d">mm_par</a> (first, second, multiply, status)</td></tr>
+<tr class="memdesc:aba503c773f80612af63d48046bfb352d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies two matrices and places result in the <code>multiply</code> param. Uses coarrays to leverage parallelism for faster operation.  <a href="#aba503c773f80612af63d48046bfb352d">More...</a><br /></td></tr>
 <tr class="separator:aba503c773f80612af63d48046bfb352d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This module contains paralell algorithm implementations. </p>
+<dl class="section author"><dt>Author</dt><dd>Wojciech Geisler </dd></dl>
+</div><h2 class="groupheader">Function/Subroutine Documentation</h2>
 <a id="aba503c773f80612af63d48046bfb352d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba503c773f80612af63d48046bfb352d">&#9670;&nbsp;</a></span>mm_par()</h2>
 
@@ -113,6 +120,18 @@ Functions/Subroutines</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Multiplies two matrices and places result in the <code>multiply</code> param. Uses coarrays to leverage parallelism for faster operation. </p>
+<dl class="section author"><dt>Author</dt><dd>Wojciech Geisler</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>First operand </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">second</td><td>Second operand </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">multiply</td><td>Multiplication result </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">status</td><td>Exit code, 0 means success </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

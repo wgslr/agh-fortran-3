@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Fortran 3: src/sequential.F90 File Reference</title>
+<title>Fortran assignment 3: src/sequential.F90 File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Fortran 3
+   <div id="projectname">Fortran assignment 3
    &#160;<span id="projectnumber">1</span>
    </div>
    <div id="projectbrief">Third assignment in the &quot;Fortran programming&quot; course</div>
@@ -78,12 +78,17 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Modules</h2></td></tr>
 <tr class="memitem:namespacesequential"><td class="memItemLeft" align="right" valign="top">module &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesequential.html">sequential</a></td></tr>
+<tr class="memdesc:namespacesequential"><td class="mdescLeft">&#160;</td><td class="mdescRight">This module contains sequential algorithm implementations. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions/Subroutines</h2></td></tr>
 <tr class="memitem:accf94172d6a9b34025ffb3e2c49c8dd7"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesequential.html#accf94172d6a9b34025ffb3e2c49c8dd7">sequential::mm_seq</a> (first, second, multiply, status)</td></tr>
+<tr class="memdesc:accf94172d6a9b34025ffb3e2c49c8dd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies two matrices and places result in the <code>multiply</code> param. Performs mathematical operation <img class="formulaInl" alt="$ first \times second $" src="form_0.png"/>.  <a href="namespacesequential.html#accf94172d6a9b34025ffb3e2c49c8dd7">More...</a><br /></td></tr>
 <tr class="separator:accf94172d6a9b34025ffb3e2c49c8dd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e04adb34aae1709b8c643bfeb212b22"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesequential.html#a4e04adb34aae1709b8c643bfeb212b22">sequential::mm_seq_square</a> (first, second, multiply, status, isize)</td></tr>
+<tr class="memdesc:a4e04adb34aae1709b8c643bfeb212b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper on mm_seq with explicit size variable necessary for creating python bindings. Accepts only square matrices.  <a href="namespacesequential.html#a4e04adb34aae1709b8c643bfeb212b22">More...</a><br /></td></tr>
+<tr class="separator:a4e04adb34aae1709b8c643bfeb212b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sequential',['sequential',['../namespacesequential.html',1,'']]]
+  ['parallel',['parallel',['../namespaceparallel.html',1,'']]]
 ];
