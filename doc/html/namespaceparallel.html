@@ -78,11 +78,59 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:aba503c773f80612af63d48046bfb352d"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceparallel.html#aba503c773f80612af63d48046bfb352d">mm_par</a> (first, second, multiply, status)</td></tr>
 <tr class="memdesc:aba503c773f80612af63d48046bfb352d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Multiplies two matrices and places result in the <code>multiply</code> param. Uses coarrays to leverage parallelism for faster operation.  <a href="#aba503c773f80612af63d48046bfb352d">More...</a><br /></td></tr>
 <tr class="separator:aba503c773f80612af63d48046bfb352d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0b78cbc517d88c204f89d8325858850"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceparallel.html#ab0b78cbc517d88c204f89d8325858850">gauss_par</a> (A, X, n)</td></tr>
+<tr class="memdesc:ab0b78cbc517d88c204f89d8325858850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs gaussian elimination on a coefficients and right hand values.  <a href="#ab0b78cbc517d88c204f89d8325858850">More...</a><br /></td></tr>
+<tr class="separator:ab0b78cbc517d88c204f89d8325858850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This module contains paralell algorithm implementations. </p>
 <dl class="section author"><dt>Author</dt><dd>Wojciech Geisler </dd></dl>
 </div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="ab0b78cbc517d88c204f89d8325858850"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0b78cbc517d88c204f89d8325858850">&#9670;&nbsp;</a></span>gauss_par()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine parallel::gauss_par </td>
+          <td>(</td>
+          <td class="paramtype">real(kind = 8), dimension(0:n, 0:n), intent(inout)&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind = 8), dimension(0:n), intent(inout)&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer(kind=8), intent(in)&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs gaussian elimination on a coefficients and right hand values. </p>
+<dl class="section author"><dt>Author</dt><dd>Wojciech Geisler</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Rank 2 array of coefficients </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">X</td><td>Rank 1 array of right hand values. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Maximum row number for 0-indexed array A and X </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="aba503c773f80612af63d48046bfb352d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba503c773f80612af63d48046bfb352d">&#9670;&nbsp;</a></span>mm_par()</h2>
 

@@ -81,11 +81,59 @@ Functions/Subroutines</h2></td></tr>
 <tr class="memitem:a4e04adb34aae1709b8c643bfeb212b22"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesequential.html#a4e04adb34aae1709b8c643bfeb212b22">mm_seq_square</a> (first, second, multiply, status, isize)</td></tr>
 <tr class="memdesc:a4e04adb34aae1709b8c643bfeb212b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper on mm_seq with explicit size variable necessary for creating python bindings. Accepts only square matrices.  <a href="#a4e04adb34aae1709b8c643bfeb212b22">More...</a><br /></td></tr>
 <tr class="separator:a4e04adb34aae1709b8c643bfeb212b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c069fe0f47eff34192dec5ee75f8fb7"><td class="memItemLeft" align="right" valign="top">subroutine&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacesequential.html#a5c069fe0f47eff34192dec5ee75f8fb7">gauss_seq</a> (A, X, n)</td></tr>
+<tr class="memdesc:a5c069fe0f47eff34192dec5ee75f8fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs gaussian elimination on a coefficients and right hand values.  <a href="#a5c069fe0f47eff34192dec5ee75f8fb7">More...</a><br /></td></tr>
+<tr class="separator:a5c069fe0f47eff34192dec5ee75f8fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This module contains sequential algorithm implementations. </p>
 <dl class="section author"><dt>Author</dt><dd>Wojciech Geisler </dd></dl>
 </div><h2 class="groupheader">Function/Subroutine Documentation</h2>
+<a id="a5c069fe0f47eff34192dec5ee75f8fb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c069fe0f47eff34192dec5ee75f8fb7">&#9670;&nbsp;</a></span>gauss_seq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">subroutine sequential::gauss_seq </td>
+          <td>(</td>
+          <td class="paramtype">real(kind = 8), dimension(0:n, 0:n), intent(inout)&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">real(kind = 8), dimension(0:n), intent(inout)&#160;</td>
+          <td class="paramname"><em>X</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">integer(kind=8), intent(in)&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Performs gaussian elimination on a coefficients and right hand values. </p>
+<dl class="section author"><dt>Author</dt><dd>Wojciech Geisler</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">A</td><td>Rank 2 array of coefficients </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">X</td><td>Rank 1 array of right hand values. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Maximum row number for 0-indexed array A and X </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="accf94172d6a9b34025ffb3e2c49c8dd7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#accf94172d6a9b34025ffb3e2c49c8dd7">&#9670;&nbsp;</a></span>mm_seq()</h2>
 

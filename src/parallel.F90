@@ -95,7 +95,7 @@ module parallel
   !
   !> @param[inout] A Rank 2 array of coefficients
   !> @param[inout] X Rank 1 array of right hand values.
-  !> @param[in] n Maximum row number for 0-indexec array A and X
+  !> @param[in] n Maximum row number for 0-indexed array A and X
   !------------------------------------------------------------------------------
   subroutine gauss_par(A, X, n)
     integer(kind=8), intent(in) :: n

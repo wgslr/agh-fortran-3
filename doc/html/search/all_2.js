@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sequential',['sequential',['../namespacesequential.html',1,'']]],
-  ['sequential_2ef90',['sequential.F90',['../sequential_8_f90.html',1,'']]]
+  ['parallel',['parallel',['../namespaceparallel.html',1,'']]],
+  ['parallel_2ef90',['parallel.F90',['../parallel_8_f90.html',1,'']]]
 ];
